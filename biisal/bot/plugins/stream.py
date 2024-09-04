@@ -89,7 +89,6 @@ async def private_receive_handler(c: Client, m: Message):
             quote=True,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("sᴛʀᴇᴀᴍ 🔺", url=stream_link), #Stream Link
-                                               [InlineKeyboardButton("ɢᴇᴛ ғɪʟᴇ", callback_data=f"https://ddbots.blogspot.com/p/download.html?link={str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"),
                                                 InlineKeyboardButton('ᴅᴏᴡɴʟᴏᴀᴅ 🔻', url=online_link)]]) #Download Link
         )
     except FloodWait as e:
