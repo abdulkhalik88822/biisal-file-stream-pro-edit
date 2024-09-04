@@ -96,6 +96,34 @@ async def private_receive_handler(c: Client, m: Message):
         await asyncio.sleep(e.x)
         await c.send_message(chat_id=Var.BIN_CHANNEL, text=f"Gᴏᴛ FʟᴏᴏᴅWᴀɪᴛ ᴏғ {str(e.x)}s from [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n**𝚄𝚜𝚎𝚛 𝙸𝙳 :** `{str(m.from_user.id)}`", disable_web_page_preview=True)
 
+#---------------------[ GEN STREAM LINKS FOR CHANNEL ]---------------------#
+
+async def gen_linkx(m:Message , _id, name: list):
+    file_info = await db.get_file(_id)
+    file_name = file_info['file_name']
+    mime_type = file_info['mime_type']
+    file_size = humanbytes(file_info['file_size'])
+
+    page_link = f"{Server.URL}watch/{_id}"
+    stream_link = f"{Server.URL}dl/{_id}"
+    file_link = f"https://t.me/{FileStream.username}?start=file_{_id}"
+
+    if "video" in mime_type:
+        stream_text= LANG.STREAM_TEXT_X.format(file_name, file_size, stream_link, page_link)
+        reply_markup = InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("sᴛʀᴇᴀᴍ", url=page_link), InlineKeyboardButton("ᴅᴏᴡɴʟᴏᴀᴅ", url=stream_link)]
+            ]
+        )
+    else:
+        stream_text= LANG.STREAM_TEXT_X.format(file_name, file_size, stream_link, file_link)
+        reply_markup = InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("ᴅᴏᴡɴʟᴏᴀᴅ", url=stream_link)]
+            ]
+        )
+    return reply_markup, stream_text
+
 @StreamBot.on_message(filters.channel & ~filters.group & (filters.document | filters.video | filters.photo)  & ~filters.forwarded, group=-1)
 async def channel_receive_handler(bot, broadcast):
     if int(broadcast.chat.id) in Var.BAN_CHNL:
