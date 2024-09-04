@@ -82,11 +82,11 @@ async def private_receive_handler(c: Client, m: Message):
         log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
         stream_link = f"https://ddbots.blogspot.com/p/stream.html?link={str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         online_link = f"https://ddbots.blogspot.com/p/download.html?link={str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-        file_link = f"{Telegram.FILES_URL}?link={str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+        file_link = f"https://ddbots.blogspot.com/p/files.html?link={str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         vansh = f"https://ddlink57.blogspot.com?filename={file_name}&filesize={file_size}&link={str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
 
         if "video" in file_info['mime_type']:
-        stream_text = LANG.STREAM_TEXT.format(file_name, file_size, stream_link, page_link, file_link)
+        stream_text = LANG.STREAM_TEXT.format(file_name, file_size, online_link, stream_link, file_link)
 
         await log_msg.reply_text(text=f"**RᴇQᴜᴇꜱᴛᴇᴅ ʙʏ :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**Uꜱᴇʀ ɪᴅ :** `{m.from_user.id}`\n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True,  quote=True)
         await m.reply_text(
