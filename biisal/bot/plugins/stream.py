@@ -96,7 +96,7 @@ async def private_receive_handler(c: Client, m: Message):
                         InlineKeyboardButton('ᴅᴏᴡɴʟᴏᴀᴅ 🔻', url=online_link)  # Download Link
                     ],
                     [
-                        InlineKeyboardButton('⚡ Sʜᴀʀᴇ Lɪɴᴋ ⚡', url='share_link')  # New Button
+                       InlineKeyboardButton('⚡ Sʜᴀʀᴇ Lɪɴᴋ ⚡', url=share_link)  # Corrected Button
                     ]
                 ]
             )
