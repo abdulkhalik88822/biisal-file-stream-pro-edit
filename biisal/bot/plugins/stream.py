@@ -2,6 +2,7 @@
 #(c) @biisal
 import os
 import asyncio
+import requests
 from asyncio import TimeoutError
 from biisal.bot import StreamBot
 from biisal.utils.database import Database
