@@ -127,12 +127,6 @@ try:
         )
     )
 
-    # Add response message
-    await m.reply_text(
-        text="✅ Your request has been processed successfully. Please use the above buttons to proceed!",
-        quote=True
-    )
-
 except FloodWait as e:
     # Handle Telegram FloodWait errors
     print(f"Sleeping for {str(e.x)}s due to FloodWait")
@@ -142,6 +136,7 @@ except FloodWait as e:
         text=f"Got FloodWait of {str(e.x)}s from [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n**User ID :** `{str(m.from_user.id)}`",
         disable_web_page_preview=True
     )
+
 
 
 
